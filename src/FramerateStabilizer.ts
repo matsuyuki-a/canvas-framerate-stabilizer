@@ -95,12 +95,8 @@ export class FramerateStabilizer {
   }
 
   private detectHz(samples: number[]): number {
-    const sorted = [...samples].sort((a, b) => a - b)
+    const sorted = [...samples].sort()
     const median = sorted[Math.floor(sorted.length / 2)]
-    const hz = Math.round(1000 / median)
-    const standards = [30, 48, 50, 60, 75, 90, 100, 120, 144, 165, 240]
-    return standards.reduce((prev, cur) =>
-      Math.abs(cur - hz) < Math.abs(prev - hz) ? cur : prev,
-    )
+    return Math.round(10000000 / median) / 10000;
   }
 }

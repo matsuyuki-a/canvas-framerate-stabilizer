@@ -1,6 +1,7 @@
 export type TargetFps = 30 | 60
 
 export interface StabilizerStats {
+  elapsedMs: number;
   targetFps: TargetFps
   measuredFps: number
   displayHz: number
@@ -90,6 +91,7 @@ export class FramerateStabilizer {
         targetFps: this.targetFps,
         measuredFps: this.measuredFps,
         displayHz: this.displayHz,
+        elapsedMs: elapsed,
       })
     }
   }
@@ -97,6 +99,6 @@ export class FramerateStabilizer {
   private detectHz(samples: number[]): number {
     const sorted = [...samples].sort()
     const median = sorted[Math.floor(sorted.length / 2)]
-    return Math.round(10000000 / median) / 10000;
+    return Math.round(1000000 / median) / 1000;
   }
 }

@@ -42,9 +42,10 @@ export class Overlay {
 
   updateStats(stats: StabilizerStats): void {
     this.hud.innerHTML = `
+      <div>Elapsed: <strong>${Math.round(stats.elapsedMs * 1000) / 1000} ms/raf</strong></div>
       <div>Monitor: <strong>${stats.displayHz} Hz</strong></div>
-      <div>Target:&nbsp; <strong>${stats.targetFps} fps</strong></div>
-      <div>Actual:&nbsp; <strong style="color:${this.fpsColor(stats.measuredFps, stats.targetFps)}">${stats.measuredFps} fps</strong></div>
+      <div>Target: <strong>${stats.targetFps} fps</strong></div>
+      <div>Actual: <strong style="color:${this.fpsColor(stats.measuredFps, stats.targetFps)}">${stats.measuredFps} fps</strong></div>
     `
   }
 

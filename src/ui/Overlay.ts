@@ -13,15 +13,17 @@ export class Overlay {
 
   private buildControls(initialFps: TargetFps): void {
     const label = document.createElement('span')
-    label.textContent = 'Target FPS:'
+    label.textContent = 'Target FPS:';
+    const targetFpsList = [7, 30, 50, 60, 100, 120] as const;
+    const buttonElements = targetFpsList.map(item => {
+      const buttonElm = this.makeButton(`${item} fps`, item)
+      if (item === initialFps) {
+        buttonElm.classList.add("active")
+      }
+      return buttonElm;
+    });
 
-    const btn30 = this.makeButton('30 fps', 30)
-    const btn60 = this.makeButton('60 fps', 60)
-
-    if (initialFps === 60) btn60.classList.add('active')
-    else btn30.classList.add('active')
-
-    this.controls.append(label, btn30, btn60)
+    this.controls.append(label, ...buttonElements)
   }
 
   private makeButton(text: string, fps: TargetFps): HTMLButtonElement {

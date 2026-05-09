@@ -1,4 +1,4 @@
-export type TargetFps = 30 | 60
+export type TargetFps = 7 | 30 | 50 | 60 | 100 | 120
 
 export interface StabilizerStats {
   elapsedMs: number;
